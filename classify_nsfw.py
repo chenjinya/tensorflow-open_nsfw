@@ -38,7 +38,7 @@ def main(argv):
 
     model = OpenNsfwModel()
 
-    with tf.Session() as sess:
+    with tf.compat.v1.Session() as sess:
 
         input_type = InputType[args.input_type.upper()]
         model.build(weights_path=args.model_weights, input_type=input_type)

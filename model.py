@@ -27,18 +27,20 @@ class OpenNsfwModel:
     def build(self, weights_path="open_nsfw-weights.npy",
               input_type=InputType.TENSOR):
 
-        self.weights = np.load(weights_path, encoding="latin1").item()
+        self.weights = np.load(
+            weights_path, allow_pickle=True, encoding="latin1").item()
         self.input_tensor = None
 
         if input_type == InputType.TENSOR:
-            self.input = tf.placeholder(tf.float32,
-                                        shape=[None, 224, 224, 3],
-                                        name="input")
+            self.input = tf.compat.v1.placeholder(tf.float32,
+                                                  shape=[None, 224, 224, 3],
+                                                  name="input")
             self.input_tensor = self.input
         elif input_type == InputType.BASE64_JPEG:
             from image_utils import load_base64_tensor
 
-            self.input = tf.placeholder(tf.string, shape=(None,), name="input")
+            self.input = tf.compat.v1.placeholder(
+                tf.string, shape=(None,), name="input")
             self.input_tensor = load_base64_tensor(self.input)
         else:
             raise ValueError("invalid input type '{}'".format(input_type))
@@ -108,6 +110,7 @@ class OpenNsfwModel:
 
     """Get weights for layer with given name
     """
+
     def __get_weights(self, layer_name, field_name):
         if not layer_name in self.weights:
             raise ValueError("No weights for layer named '{}' found"
@@ -122,6 +125,7 @@ class OpenNsfwModel:
 
     """Layer creation and weight initialization
     """
+
     def __fully_connected(self, name, inputs, num_outputs):
         return tf.layers.dense(
             inputs=inputs, units=num_outputs, name=name,
@@ -172,6 +176,7 @@ class OpenNsfwModel:
 
     """ResNet blocks
     """
+
     def __conv_block(self, stage, block, inputs, filter_depths,
                      kernel_size=3, stride=2):
         filter_depth1, filter_depth2, filter_depth3 = filter_depths

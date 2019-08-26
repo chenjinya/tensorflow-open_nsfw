@@ -75,3 +75,17 @@ Exports the model in [TFLite format](https://www.tensorflow.org/lite/). Use this
 __export_graph.py__
 
 Exports the tensorflow graph and checkpoint. Freezes and optimizes the graph per default for improved inference and deployment usage (e.g. Android, iOS, etc.). Import the graph with `tf.import_graph_def`.
+
+
+# Changelog
+
+0. 运行前
+
+安装  `tensorflow` ，whl列表 https://github.com/lakshayg/tensorflow-build
+
+安装 `skimage`, `python -m pip install scikit-image`
+
+1. 运行提示 `ValueError: Object arrays cannot be loaded when allow_pickle=False`
+
+需要在 `model.py` 的 `np.load` 里添加 `allow_pickle=True` 参数。
+
