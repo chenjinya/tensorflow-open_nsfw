@@ -1,3 +1,23 @@
+
+
+# Changelog
+
+0. 运行前
+
+安装  `tensorflow` ，whl列表 https://github.com/lakshayg/tensorflow-build
+
+安装 `skimage`, `python -m pip install scikit-image`
+
+1. 运行提示 `ValueError: Object arrays cannot be loaded when allow_pickle=False`
+
+需要在 `model.py` 的 `np.load` 里添加 `allow_pickle=True` 参数。
+
+2. 增加了可以下载远程图片的功能
+
+3. 添加了`callback` 参数，可以将结果回传给API
+
+---original README---
+
 # Tensorflow Implementation of Yahoo's Open NSFW Model
 
 This repository contains an implementation of [Yahoo's Open NSFW Classifier](https://github.com/yahoo/open_nsfw) rewritten in tensorflow.
@@ -76,16 +96,4 @@ __export_graph.py__
 
 Exports the tensorflow graph and checkpoint. Freezes and optimizes the graph per default for improved inference and deployment usage (e.g. Android, iOS, etc.). Import the graph with `tf.import_graph_def`.
 
-
-# Changelog
-
-0. 运行前
-
-安装  `tensorflow` ，whl列表 https://github.com/lakshayg/tensorflow-build
-
-安装 `skimage`, `python -m pip install scikit-image`
-
-1. 运行提示 `ValueError: Object arrays cannot be loaded when allow_pickle=False`
-
-需要在 `model.py` 的 `np.load` 里添加 `allow_pickle=True` 参数。
 
