@@ -13,7 +13,11 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 
 def get(url, param):
-    url = url + "?" + urllib.parse.urlencode(param)
+    if '?' in url:
+        addon = "&"
+    else:
+        addon = "?"
+    url = url + addon + urllib.parse.urlencode(param)
     print("Get url:", url)
     resu = urllib.request.urlopen(
         url, None, timeout=10)

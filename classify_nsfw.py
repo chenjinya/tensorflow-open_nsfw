@@ -46,7 +46,7 @@ def main(argv):
 
     model = OpenNsfwModel()
     current_path = os.getcwd()
-    dir_path = '%s/porn_detect_temp' % (current_path)
+    dir_path = '%s/image_temp' % (current_path)
     if 'http' in args.input_file:
         image_file_path = utils.download(args.input_file, dir_path)
         print("image download to: " + image_file_path)
@@ -83,7 +83,6 @@ def main(argv):
         print("\tSFW score:\t{}\n\tNSFW score:\t{}".format(*predictions[0]))
         if '' != args.callback:
             param = {
-                'id': 758693,
                 'sfw': str(predictions[0][0]), 'nsfw': str(predictions[0][1])
             }
             ret = utils.get(args.callback, param)
