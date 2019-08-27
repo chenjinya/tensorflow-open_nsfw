@@ -19,6 +19,8 @@ Python: 3.7.4
 
 3. 添加了`callback` 参数，可以将结果回传给API
 
+4. 加入了除JPG之外的图片格式支持。(使用了 pillow 库 `pip install pillow`)
+
 # Tips
 
 0. 运行前

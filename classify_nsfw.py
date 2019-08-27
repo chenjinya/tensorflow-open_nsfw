@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+import os
 import argparse
 import tensorflow as tf
 
@@ -47,6 +48,12 @@ def main(argv):
         print("image download to: " + image_file_path)
     else:
         image_file_path = args.input_file
+
+    if '.jpg' not in image_file_path:
+        jpg_image_file_path = utils.convPNG2JPG(image_file_path)
+        os.remove(image_file_path)
+        image_file_path = jpg_image_file_path
+
     with tf.compat.v1.Session() as sess:
 
         input_type = InputType[args.input_type.upper()]

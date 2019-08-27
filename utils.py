@@ -8,8 +8,37 @@ import urllib
 import json
 import time
 import ssl
+from PIL import Image
 
 ssl._create_default_https_context = ssl._create_unverified_context
+
+
+def IsValidImage(img_path):
+    """
+    判断文件是否为有效（完整）的图片
+    :param img_path:图片路径
+    :return:True：有效 False：无效
+    """
+    bValid = True
+    try:
+        Image.open(img_path).verify()
+    except:
+        bValid = False
+    return bValid
+
+
+def convPNG2JPG(img_path):
+    if IsValidImage(img_path):
+        try:
+            str = img_path.rsplit(".", 1)
+            output_img_path = str[0] + ".jpg"
+            im = Image.open(img_path)
+            im.save(output_img_path)
+            return output_img_path
+        except:
+            return False
+    else:
+        return False
 
 
 def get(url, param):
