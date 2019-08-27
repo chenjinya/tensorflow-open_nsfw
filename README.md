@@ -1,5 +1,14 @@
 
 
+# Evn
+
+
+Description:	CentOS Linux release 7.3.1611 (Core)
+
+Release:	7.3.1611
+
+Python: 3.7.4
+
 # Changelog
 
 0. 运行前
@@ -16,7 +25,15 @@
 
 3. 添加了`callback` 参数，可以将结果回传给API
 
----original README---
+# Tips
+
+1. 如果遇到 `/lib64/libstdc++.so.6: version 'CXXABI_1.3.8' not found`  的问题，请参考  https://blog.csdn.net/EI__Nino/article/details/100086157
+2. 如果遇到 `/lib64/libm.so.6: version 'GLIBC_2.23' not found` 的那问题，请参考 https://blog.csdn.net/EI__Nino/article/details/100094484
+
+遇到问题主要是Tensorflow的问题，主要解决方法就是升级 gcc glibc make (gmake)
+
+经过测试，大概识别一张图需要 7 - 8秒的时间。 ( 4 core 16G)
+
 
 # Tensorflow Implementation of Yahoo's Open NSFW Model
 
