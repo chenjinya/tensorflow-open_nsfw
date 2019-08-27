@@ -11,21 +11,21 @@ Python: 3.7.4
 
 # Changelog
 
-0. 运行前
 
-安装  `tensorflow` ，whl列表 https://github.com/lakshayg/tensorflow-build
 
-安装 `skimage`, `python -m pip install scikit-image`
-
-1. 运行提示 `ValueError: Object arrays cannot be loaded when allow_pickle=False`
-
-需要在 `model.py` 的 `np.load` 里添加 `allow_pickle=True` 参数。
+1. 运行发现提示 `ValueError: Object arrays cannot be loaded when allow_pickle=False`，在 `model.py` 的 `np.load` 里添加 `allow_pickle=True` 参数。
 
 2. 增加了可以下载远程图片的功能
 
 3. 添加了`callback` 参数，可以将结果回传给API
 
 # Tips
+
+0. 运行前
+
+安装  `tensorflow` ，whl列表 https://github.com/lakshayg/tensorflow-build
+
+安装 `skimage`, `python -m pip install scikit-image`
 
 1. 如果遇到 `/lib64/libstdc++.so.6: version 'CXXABI_1.3.8' not found`  的问题，请参考  https://blog.csdn.net/EI__Nino/article/details/100086157
 2. 如果遇到 `/lib64/libm.so.6: version 'GLIBC_2.23' not found` 的那问题，请参考 https://blog.csdn.net/EI__Nino/article/details/100094484
