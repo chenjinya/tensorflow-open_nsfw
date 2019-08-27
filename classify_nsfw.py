@@ -51,6 +51,10 @@ def main(argv):
 
     if '.jpg' not in image_file_path:
         jpg_image_file_path = utils.convPNG2JPG(image_file_path)
+        if False == jpg_image_file_path:
+            print('Conv Image Fail!' + image_file_path)
+            exit(1)
+
         os.remove(image_file_path)
         image_file_path = jpg_image_file_path
 
