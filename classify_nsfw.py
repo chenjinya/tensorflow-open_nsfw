@@ -79,7 +79,6 @@ def main(argv):
                      feed_dict={model.input: image})
 
         print("Results for '{}'".format(args.input_file))
-        print(predictions)
         print("\tSFW score:\t{}\n\tNSFW score:\t{}".format(*predictions[0]))
         if '' != args.callback:
             param = {
