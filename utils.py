@@ -13,6 +13,22 @@ from PIL import Image
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
+def flatten(li):
+    if True == isinstance(li, tuple):
+        li = list(li)
+    if False == isinstance(li, list):
+        print(li, 'is not `list`')
+        return False
+
+    _list = []
+    for item in li:
+        if isinstance(item, list):
+            _list.extend(flatten(item))
+        else:
+            _list.append(item)
+    return _list
+
+
 def IsValidImage(img_path):
     """
     判断文件是否为有效（完整）的图片

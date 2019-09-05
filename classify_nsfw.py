@@ -7,7 +7,7 @@ import tensorflow as tf
 from model import OpenNsfwModel, InputType
 from image_utils import create_tensorflow_image_loader
 from image_utils import create_yahoo_image_loader
-
+import logger
 import numpy as np
 import utils
 
@@ -45,14 +45,14 @@ def main(argv):
     dir_path = '%s/image_temp' % (current_path)
     if 'http' in args.input_file:
         image_file_path = utils.download(args.input_file, dir_path)
-        print("image download to: " + image_file_path)
+        logger.info("image download to: " + image_file_path)
     else:
         image_file_path = args.input_file
 
     if '.jpg' not in image_file_path:
         jpg_image_file_path = utils.convPNG2JPG(image_file_path)
         if False == jpg_image_file_path:
-            print('Conv Image Fail!' + image_file_path)
+            logger.error('Conv Image Fail!' + image_file_path)
             exit(1)
 
         os.remove(image_file_path)
@@ -84,14 +84,15 @@ def main(argv):
             sess.run(model.predictions,
                      feed_dict={model.input: image})
 
-        print("Results for '{}'".format(args.input_file))
-        print("\tSFW score:\t{}\n\tNSFW score:\t{}".format(*predictions[0]))
+        logger.info("Results for '{}'".format(args.input_file))
+        logger.info(
+            "\tSFW score:\t{}\n\tNSFW score:\t{}".format(*predictions[0]))
         if '' != args.callback:
             param = {
                 'sfw': str(predictions[0][0]), 'nsfw': str(predictions[0][1])
             }
             ret = utils.get(args.callback, param)
-            print(ret)
+            logger.info(ret)
     if 'http' in args.input_file:
         os.remove(image_file_path)
 
