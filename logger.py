@@ -44,8 +44,8 @@ def info(*content):
 
 
 def warning(*content):
-    l.info(*content)
+    l.warning(*content)
 
 
-def danger(*content):
-    l.info(*content)
+def error(*content):
+    l.error(*content)
